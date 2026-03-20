@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
-import { useAuth, useProjects, useImageUpload } from "../hooks/useProjects";
-import { useContent, useContact } from "../../../hooks/useContent";
+import { useContact, useContent } from "../hooks/useContent";
+import { useAuth, useImageUpload, useProjects } from "../hooks/useProjects";
+
 
 const inputClass = "w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-800 placeholder-stone-400 focus:outline-none focus:border-stone-600 transition-colors bg-white";
 const labelClass = "text-xs text-stone-500 mb-1 block";

@@ -14,10 +14,6 @@ const allowedOrigins = [
   process.env.FRONTEND_URL,
   "http://localhost:5173",
   "http://localhost:4173",
-  "http://127.0.0.1:5173/",
-  "http://127.0.0.1:4173/",
-  "http://192.168.0.244:5173/",  // ← agregar esta
-  "http://192.168.0.244:4173/",  // ← y esta
 ].filter(Boolean);
 
 app.use(cors({

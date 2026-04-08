@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <meta name="application-name" content="Fiwo Agency" />
+    <meta name="apple-mobile-web-app-title" content="Fiwo Agency" />
+
     <!-- ── SEO básico ───────────────────────────────────────────────────────── -->
     <title>Fiwo Agency | Agencia de Desarrollo Web en Rosario</title>
     <meta name="description" content="Agencia de desarrollo web y software a medida en Rosario, Argentina. Creamos sitios web, aplicaciones y plataformas SaaS con diseño moderno y código de calidad." />
@@ -36,26 +39,41 @@
     <meta name="ICBM"             content="-32.9468, -60.6393" />
 
     <!-- ── Favicon ─────────────────────────────────────────────────────────── -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/icon1.ico" />
+    <link rel="apple-touch-icon" href="/iphone.png" />
 
     <!-- ── Schema.org JSON-LD (Google entiende que son una agencia local) ──── -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Fiwo Agency",
-      "description": "Agencia de desarrollo web y software a medida en Rosario, Argentina.",
-      "url": "https://fiwo-agency.vercel.app",
-      "email": "fiwo.agency@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Rosario",
-        "addressRegion": "Santa Fe",
-        "addressCountry": "AR"
-      },
-      "areaServed": ["AR", "ES", "US"],
-      "serviceType": ["Desarrollo Web", "Software a Medida", "UX/UI Design", "Consultoría Tech"],
-      "priceRange": "$$"
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Fiwo Agency",
+          "url": "https://fiwo-agency.vercel.app",
+          "logo": "https://fiwo-agency.vercel.app/og-image.png"
+        },
+        {
+          "@type": "ProfessionalService",
+          "name": "Fiwo Agency",
+          "description": "Agencia de desarrollo web y software a medida en Rosario, Argentina.",
+          "email": "fiwo.agency@gmail.com",
+          "areaServed": ["AR", "ES", "US"],
+          "serviceType": [
+            "Desarrollo Web",
+            "Software a Medida",
+            "UX/UI Design",
+            "Consultoría Tech"
+          ],
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Rosario",
+            "addressRegion": "Santa Fe",
+            "addressCountry": "AR"
+          }
+        }
+      ]
     }
     </script>
   </head>

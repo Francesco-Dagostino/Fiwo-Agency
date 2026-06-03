@@ -1,12 +1,13 @@
 import { useState, useRef } from "react";
 import { useContact, useContent } from "../hooks/useContent";
 import { useAuth, useImageUpload, useProjects } from "../hooks/useProjects";
+import Prospecting from "../components/Prospecting";
 
 const inputClass = "w-full rounded-2xl border border-cyan-400/12 bg-white/5 px-4 py-2.5 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:border-cyan-300/35 transition-colors";
 const labelClass = "text-xs text-slate-400 mb-1 block";
 
 function AdminNav({ active, setActive, onLogout }) {
-  const tabs = ["proyectos", "equipo", "servicios", "faq", "contacto"];
+  const tabs = ["proyectos", "equipo", "servicios", "faq", "contacto", "leads"];
   return (
     <header className="border-b border-cyan-400/10 bg-[#071228]/80 px-6 py-4 backdrop-blur-xl">
       <div className="max-w-5xl mx-auto flex items-center justify-between gap-4">
@@ -380,6 +381,7 @@ function AdminPanel({ onLogout }) {
         {active === "servicios" && <ContentSection resource="services" title="Servicios" fields={servicesFields} emptyItem={{ icon:"◻", title:"", description:"", order_index:0 }} />}
         {active === "faq"       && <ContentSection resource="faq"      title="FAQ"       fields={faqFields}      emptyItem={{ question:"", answer:"", order_index:0 }} />}
         {active === "contacto"  && <ContactSection />}
+        {active === "leads" && <Prospecting />}
       </div>
     </div>
   );

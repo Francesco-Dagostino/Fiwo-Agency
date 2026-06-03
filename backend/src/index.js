@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth.js";
 import projectsRoutes from "./routes/projects.js";
 import uploadRoutes from "./routes/upload.js";
 import contentRoutes from "./routes/content.js";
+import leadsRoutes from "./routes/leads.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 4000;
@@ -33,6 +34,7 @@ app.use(express.json({ limit: "10mb" }));
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectsRoutes);
 app.use("/api/upload", uploadRoutes);
+app.use("/api/leads", leadsRoutes);
 app.use("/api", contentRoutes);
 
 app.get("/health", (_, res) => res.json({ status: "ok" }));

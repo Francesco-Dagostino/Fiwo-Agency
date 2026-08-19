@@ -9,6 +9,10 @@ const supabase = createClient(
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 async function searchBusinesses(query, limit = 20) {
+  if (!process.env.SERPAPI_KEY) {
+    throw new Error("SERPAPI_KEY no configurada en el backend");
+  }
+
   const response = await axios.get("https://serpapi.com/search.json", {
     params: {
       engine: "google_maps",
@@ -109,7 +113,10 @@ export async function searchLeads(req, res) {
       }));
 
     if (toInsert.length > 0) {
-      await supabase.from("leads").upsert(toInsert, { onConflict: "place_id" });
+      const { error } = await supabase
+        .from("leads")
+        .upsert(toInsert, { onConflict: "place_id" });
+      if (error) throw error;
     }
 
     res.json({
@@ -120,8 +127,21 @@ export async function searchLeads(req, res) {
       results,
     });
   } catch (err) {
-    console.error("searchLeads error:", err.message);
-    res.status(500).json({ error: "Error al buscar. Revisá la SERPAPI_KEY." });
+    const upstreamStatus = err.response?.status;
+    const upstreamMessage = err.response?.data?.error;
+    console.error("searchLeads error:", {
+      message: err.message,
+      code: err.code,
+      upstreamStatus,
+      upstreamMessage,
+    });
+
+    const isSerpApiError = Boolean(upstreamStatus) || err.message.includes("SERPAPI_KEY");
+    res.status(isSerpApiError ? 502 : 500).json({
+      error: isSerpApiError
+        ? "No se pudo consultar SerpApi. Revisá la configuración del backend."
+        : "Error al guardar los leads encontrados.",
+    });
   }
 }
 

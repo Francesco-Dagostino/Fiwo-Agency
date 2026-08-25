@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import "./config/env.js";
 
 import authRoutes from "./routes/auth.js";
 import projectsRoutes from "./routes/projects.js";

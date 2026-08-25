@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import "dotenv/config";
+import "../config/env.js";
 
 // En producción guardarías admins en la BD con passwords hasheados.
 // Para arrancar, el admin se define directo en el .env.

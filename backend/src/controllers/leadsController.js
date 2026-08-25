@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createClient } from "@supabase/supabase-js";
+import "../config/env.js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -136,7 +137,7 @@ export async function searchLeads(req, res) {
       upstreamMessage,
     });
 
-    const isSerpApiError = Boolean(upstreamStatus) || err.message.includes("SERPAPI_KEY");
+    const isSerpApiError = axios.isAxiosError(err) || err.message.includes("SERPAPI_KEY");
     res.status(isSerpApiError ? 502 : 500).json({
       error: isSerpApiError
         ? "No se pudo consultar SerpApi. Revisá la configuración del backend."
